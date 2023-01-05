@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Aside = ({ clients, roomId }) => {
   const navigate = useNavigate();
+
   const copyRoomIdHandler = () => {
     if (roomId) {
       navigator.clipboard.writeText(roomId);
@@ -23,22 +24,23 @@ const Aside = ({ clients, roomId }) => {
 
       <p className="font-weight-bold">Connected Geeks</p>
       <div
-        className="d-flex flex-wrap justify-content-between"
         style={{
           flex: 1,
         }}
       >
-        {clients.map((client) => {
-          return (
-            <div
-              className="d-flex flex-column mt-2 align-items-center"
-              key={client.socketId}
-            >
-              <Avatar round={"15px"} name={client.username} size={55} />
-              <span>{client.username}</span>
-            </div>
-          );
-        })}
+        <div className="d-flex flex-wrap justify-content-between">
+          {clients.map((client) => {
+            return (
+              <div
+                className="d-flex flex-column mt-2 align-items-center"
+                key={client.socketId}
+              >
+                <Avatar round={"15px"} name={client.username} size={55} />
+                <span>{client.username}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div className=" mb-3 ">
         <button className="btn btn-light w-100" onClick={copyRoomIdHandler}>

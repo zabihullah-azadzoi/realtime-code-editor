@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import CodeMirror from "codemirror";
 import ACTIONS from "../Actions";
 import "codemirror/lib/codemirror.css";
@@ -11,6 +11,7 @@ import "codemirror/addon/runmode/colorize";
 const CodeEditor = ({ socketRef, roomId, onSyncCode }) => {
   let codeMirrorRef = useRef(null);
   useEffect(() => {
+
     const codeMirror = async () => {
       codeMirrorRef.current = CodeMirror.fromTextArea(
         document.getElementById("textArea"),
@@ -46,14 +47,16 @@ const CodeEditor = ({ socketRef, roomId, onSyncCode }) => {
 
   // syncing the receiving code
   useEffect(() => {
-    if (!socketRef.current) return;
+    if (!socketRef.current || !codeMirrorRef.current) return;
     socketRef.current.on(ACTIONS.CODE_CHANGE, (code) => {
       codeMirrorRef.current.setValue(code);
     });
 
     // syncing the existing code after joining
     socketRef.current.on(ACTIONS.CODE_SYNC, (code) => {
-      codeMirrorRef.current.setValue(code);
+      if (code !== null) {
+        codeMirrorRef.current.setValue(code);
+      }
     });
   }, [socketRef.current]);
 

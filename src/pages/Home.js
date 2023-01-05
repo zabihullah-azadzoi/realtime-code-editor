@@ -22,23 +22,23 @@ const Home = () => {
   };
 
   return (
-    <div className="homeWrapper d-flex align-items-center">
+    <div className="homeWrapper d-flex justify-content-center flex-column">
       <div className="joinForm col-md-4 offset-md-4 p-3">
         <img className="w-50 mb-4" src="/logo.png" alt="app logo" />
-        <form className="form " onSubmit={joinRoomHandler}>
+        <form className="form clearfix" onSubmit={joinRoomHandler}>
           <label className="text-light mb-2">Paste invitation ROOM ID:</label>
           <input
-            className="form-control mb-2"
+            className="form-control mb-2 fw-bold"
             placeholder="ROOM ID"
             value={roomId}
             onChange={(e) => setRoomId(e.target.value)}
           />
           <input
-            className="form-control mb-2"
+            className="form-control mb-2 fw-bold"
             placeholder="USER NAME"
             onChange={(e) => setUsername(e.target.value)}
           />
-          <button className="btn  btn-success mt-2">JOIN</button>
+          <button className="btn  btn-success mt-2 float-end">JOIN</button>
         </form>
         <p className="text-light mt-3 text-center">
           If you don't have an invitation then create{" "}
@@ -51,6 +51,9 @@ const Home = () => {
           </button>
         </p>
       </div>
+      <footer className="footer">
+        <p>Made with {"\uD83D\uDC9B"} by Zabihullah Azadzoi</p>
+      </footer>
     </div>
   );
 };
