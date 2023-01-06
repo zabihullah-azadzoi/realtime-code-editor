@@ -18,7 +18,7 @@ const Home = () => {
       return toast.error("Room ID and Username are required!");
     }
     navigate(`/editor/${roomId}`, { state: { username } });
-    toast.success("New Room is created.");
+    toast.success("You joined the room successfully");
   };
 
   return (

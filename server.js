@@ -1,14 +1,18 @@
 const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 const server = http.createServer(app);
 const io = new socketio.Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_SIDE_URL,
   },
 });
+
+app.use(cors());
 
 const clients = {};
 const getAllClientsInRoom = (roomId) => {
@@ -46,6 +50,15 @@ io.on("connection", (socket) => {
     io.to(socketId).emit("code_sync", code);
   });
 
+  socket.on("output_changed", ({ output, roomId }) => {
+    socket.in(roomId).emit("output_received", output);
+  });
+
+  socket.on("processing", ({ roomId, isProcessing }) => {
+    console.log(isProcessing);
+    socket.in(roomId).emit("processing", isProcessing);
+  });
+
   socket.on("disconnecting", () => {
     const rooms = [...socket.rooms];
     rooms.forEach((roomId) => {
@@ -59,6 +72,7 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5000, () => {
-  console.log(`Server is connected on port ${5000}`);
+const port = process.env.SERVER_PORT || 5000;
+server.listen(port, () => {
+  console.log(`Server is connected on port ${port}`);
 });

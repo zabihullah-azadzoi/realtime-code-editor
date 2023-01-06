@@ -11,7 +11,6 @@ import "codemirror/addon/runmode/colorize";
 const CodeEditor = ({ socketRef, roomId, onSyncCode }) => {
   let codeMirrorRef = useRef(null);
   useEffect(() => {
-
     const codeMirror = async () => {
       codeMirrorRef.current = CodeMirror.fromTextArea(
         document.getElementById("textArea"),
@@ -39,25 +38,27 @@ const CodeEditor = ({ socketRef, roomId, onSyncCode }) => {
     };
 
     codeMirror();
-
-    return () => {
-      socketRef.current.off(ACTIONS.CODE_CHANGE);
-    };
   }, []);
 
   // syncing the receiving code
   useEffect(() => {
-    if (!socketRef.current || !codeMirrorRef.current) return;
-    socketRef.current.on(ACTIONS.CODE_CHANGE, (code) => {
+    const socket = socketRef.current;
+    if (!socket || !codeMirrorRef.current) return;
+    socket.on(ACTIONS.CODE_CHANGE, (code) => {
       codeMirrorRef.current.setValue(code);
     });
 
     // syncing the existing code after joining
-    socketRef.current.on(ACTIONS.CODE_SYNC, (code) => {
+    socket.on(ACTIONS.CODE_SYNC, (code) => {
       if (code !== null) {
         codeMirrorRef.current.setValue(code);
       }
     });
+
+    return () => {
+      socket.off(ACTIONS.CODE_CHANGE);
+      socket.off(ACTIONS.CODE_SYNC);
+    };
   }, [socketRef.current]);
 
   return <textarea id="textArea" className="codeMirror"></textarea>;

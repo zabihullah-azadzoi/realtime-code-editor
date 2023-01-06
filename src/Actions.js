@@ -4,7 +4,9 @@ const ACTIONS = {
   DISCONNECTED: "disconnected",
   CODE_CHANGE: "code_change",
   CODE_SYNC: "code_sync",
-  LEAVE: "leave",
+  PROCESSING: "processing",
+  OUTPUT_RECEIVED: "output_received",
+  OUTPUT_CHANGED: "output_changed",
 };
 
 export default ACTIONS;
