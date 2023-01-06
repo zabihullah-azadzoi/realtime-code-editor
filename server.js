@@ -55,7 +55,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("processing", ({ roomId, isProcessing }) => {
-    console.log(isProcessing);
     socket.in(roomId).emit("processing", isProcessing);
   });
 
