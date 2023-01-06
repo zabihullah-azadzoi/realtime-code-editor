@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Realtime Code Editor and compiler
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This is a realtime code editor and compiler primarily used for code collaboration and group programming:
 
-In the project directory, you can run:
+* features:
+  * Node provides the backend environment for this application
+  * Express middleware is used to handle requests, routes
+  * React for displaying UI components
+  * Websockets and Socket.io library is used to handle realtime code sharing
+  * Using Jungo0 Api for compiling and executing the code
+ 
+  
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+ Create .env file in the root directory that includes:
 
-### `npm run build`
+  * REACT_APP_RAPID_API_URL="https://judge0-ce.p.rapidapi.com/submissions"
+  * REACT_APP_RAPID_API_HOST="judge0-ce.p.rapidapi.com"
+  * REACT_APP_RAPID_API_SECRET=                        // get your own after singing in and subscribing to the jungo0 Api in Rapid  (https://rapidapi.com/judge0-official/api/judge0-ce)
+  * REACT_APP_SERVER_URL=REACT_APP_API_URL="http://localhost:8000"
+  * CLIENT_SIDE_URL="http://localhost:3000"
+  * SERVER_PORT=5000
+  
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Start development for client side
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ npm run start
+```
 
-### `npm run eject`
+## Start development for server side in a separate terminal 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+$ npm run start:sever
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Simple build for production in client
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+$ npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Languages & tools
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Node](https://nodejs.org/en/)
 
-### Code Splitting
+- [Express](https://expressjs.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [React](https://reactjs.org/)
 
-### Analyzing the Bundle Size
+- [Webpack](https://webpack.js.org/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
