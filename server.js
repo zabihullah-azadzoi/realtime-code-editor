@@ -1,5 +1,6 @@
 const express = require("express");
 const socketio = require("socket.io");
+const path = require("path");
 const http = require("http");
 const cors = require("cors");
 require("dotenv").config();
@@ -13,6 +14,17 @@ const io = new socketio.Server(server, {
 });
 
 app.use(cors());
+
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("build"));
+
+  console.log(process.env.NODE_ENV);
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "build", "index.html"))
+  );
+}
 
 const clients = {};
 const getAllClientsInRoom = (roomId) => {
