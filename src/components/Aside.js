@@ -28,7 +28,10 @@ const Aside = ({ clients, roomId }) => {
           flex: 1,
         }}
       >
-        <div className="d-flex flex-wrap justify-content-between">
+        <div
+          className="d-flex flex-wrap justify-content-between"
+          style={{ gap: "1.5rem" }}
+        >
           {clients.map((client) => {
             return (
               <div
