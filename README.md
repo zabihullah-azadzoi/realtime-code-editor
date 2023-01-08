@@ -24,7 +24,7 @@ This is a realtime code editor and compiler primarily used for code collaboratio
   * REACT_APP_RAPID_API_URL="https://judge0-ce.p.rapidapi.com/submissions"
   * REACT_APP_RAPID_API_HOST="judge0-ce.p.rapidapi.com"
   * REACT_APP_RAPID_API_SECRET=                        // get your own after singing in and subscribing to the jungo0 Api in Rapid  (https://rapidapi.com/judge0-official/api/judge0-ce)
-  * REACT_APP_SERVER_URL=REACT_APP_API_URL="http://localhost:8000"
+  * REACT_APP_SERVER_URL="http://localhost:5000"
   * CLIENT_SIDE_URL="http://localhost:3000"
   * SERVER_PORT=5000
   
